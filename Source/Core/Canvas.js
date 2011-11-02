@@ -584,7 +584,8 @@ var Canvas;
       // set canvas styles
       for(var s in styles) ctx[s] = styles[s];
       // painting background of white
-      ctx.fillStyle = ctx.strokeStyle='#ffffff';
+      if (!ctx.fillStyle && !ctx.strokeStyle)
+        ctx.fillStyle = ctx.strokeStyle = '#ffffff';
       ctx.fillRect(iniWidth, iniHeight, canvas.width, canvas.height);
       // start draw
       ctx.fillStyle = ctx.strokeStyle = oldColor;
@@ -626,8 +627,10 @@ var Canvas;
     drawBaseAxis: function (ctx, margin, iniWidth, iniHeight, offset, width, height) {
       // DRAWING BASE AXIS
       var initialX = iniWidth + offset + margin.left || 0,
-	  initialY = iniHeight - offset - margin.bottom;
-	  ctx.fillStyle = ctx.strokeStyle = '#000000';
+          initialY = iniHeight - offset - margin.bottom,
+          legendX = 'x',
+          legendY = 'y';
+      ctx.fillStyle = ctx.strokeStyle = '#000000';
       
       // x
       ctx.moveTo(initialX, initialY);
@@ -636,9 +639,15 @@ var Canvas;
       ctx.moveTo(initialX, initialY);
       ctx.lineTo(initialX , initialY - height);
       // drawing legends
-      ctx.fillText(this.config.Axis.legendX || 'x', 0, iniHeight - 10);
+      if (typeof(this.config.Axis.legendX) !== 'undefined')
+        legendX = this.config.Axis.legendX;
+      
+      if (typeof(this.config.Axis.legendY) !== 'undefined')
+        legendY = this.config.Axis.legendY;
+      
+      ctx.fillText(legendX, 0, iniHeight - 10);
       ctx.rotate(Math.PI/-2);
-      ctx.fillText(this.config.Axis.legendY || 'y', offset, -iniHeight + offset - 10);
+      ctx.fillText(legendY, offset, -iniHeight + offset - 10);
       ctx.rotate(Math.PI/2);
     },
 
