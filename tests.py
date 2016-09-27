@@ -495,6 +495,23 @@ tests_model = {
             'Extras': ['excanvas.js'],
             'Example': True
         },
+        {
+            'Title': 'Icicle with dynamic loading',
+            'Description': 
+            """
+            <p>A static JSON tree is loaded at start. The visualization
+            dynamically adds the said tree to extend the visualization to be
+            practically endless.</p>
+            <p>
+              <b>Left click</b> to set a node as root for the visualization.
+            </p>
+            <p>
+              <b>Right click</b> to set the parent node as root for the visualization.
+            </p>
+            """,
+            'Extras': ['excanvas.js'],
+            'Example': True
+        },
    ],
 
     'ForceDirected': [
@@ -741,7 +758,19 @@ tests_model = {
             """,
             'Extras': ['excanvas.js'],
             'Example': False
-        }
+        },
+        {
+            'Title': 'Area Chart Example overridden aggregate values and labels',
+            'Description': 
+            """
+            A static Area Chart example with gradients that displays tooltips when hovering the stacks.<br /><br />
+            Left-click a Stack to apply a filter to it.<br /><br />
+            Right-click to restore all stacks.<br /><br />
+            Click the Update button to update the JSON data.
+            """,
+            'Extras': ['excanvas.js'],
+            'Example': False
+        },
     ],
     
    'BarChart': [
